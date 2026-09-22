@@ -11,9 +11,9 @@ const {
   searchAction,
   showLinks,
   showTags,
-  siteRootPathname,
   siteUrl,
   tagsPathname,
+  telegramChannel,
 } = Astro.props as {
   channelTitle?: string
   currentPathname: string
@@ -23,17 +23,12 @@ const {
   searchAction: string
   showLinks?: boolean
   showTags?: boolean
-  siteRootPathname: string
   siteUrl: string
   tagsPathname: string
+  telegramChannel?: string
 }
 
 const primaryNavItems = [
-  {
-    href: siteUrl,
-    pathname: siteRootPathname,
-    title: 'Home',
-  },
   showTags && {
     href: `${siteUrl}tags`,
     pathname: tagsPathname,
@@ -49,6 +44,24 @@ const primaryNavItems = [
 
 <nav class="site-navigation" aria-label="Primary navigation">
   <ul>
+    {
+      telegramChannel && (
+        <li>
+          <a class="telegram-link" href={`https://t.me/${telegramChannel}`} title={channelTitle} target="_blank">
+            Telegram
+          </a>
+        </li>
+      )
+    }
+    {
+      primaryNavItems.map((nav) => (
+        <li>
+          <a href={nav.href} title={nav.title} aria-current={currentPathname === nav.pathname ? 'page' : undefined}>
+            {nav.title}
+          </a>
+        </li>
+      ))
+    }
     {
       navs.map((nav) => (
         <li>

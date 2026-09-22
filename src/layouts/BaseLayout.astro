@@ -19,14 +19,13 @@ const { channel, pageClass, pageType, seo } = Astro.props as {
 
 const locale = getEnv(import.meta.env, 'LOCALE')
 const twitter = getEnv(import.meta.env, 'TWITTER')
-const { currentPathname, hasCustomTitle, linksPathname, seoParams, siteRootPathname, siteTitle, tagsPathname } =
-  getPageSeo({
-    channel,
-    locale,
-    seo,
-    siteUrl: SITE_URL,
-    url: Astro.url,
-  })
+const { currentPathname, hasCustomTitle, linksPathname, seoParams, siteTitle, tagsPathname } = getPageSeo({
+  channel,
+  locale,
+  seo,
+  siteUrl: SITE_URL,
+  url: Astro.url,
+})
 
 const GOOGLE_SEARCH_SITE = getEnv(import.meta.env, 'GOOGLE_SEARCH_SITE')
 const searchAction = GOOGLE_SEARCH_SITE ? 'https://www.google.com/search' : `${SITE_URL}search/result`
@@ -35,6 +34,7 @@ const HEADER_INJECT = getEnv(import.meta.env, 'HEADER_INJECT')
 const FOOTER_INJECT = getEnv(import.meta.env, 'FOOTER_INJECT')
 const TAGS = getEnv(import.meta.env, 'TAGS')
 const LINKS = getEnv(import.meta.env, 'LINKS')
+const CHANNEL = getEnv(import.meta.env, 'CHANNEL')
 const navs = parseDelimitedItems(getEnv(import.meta.env, 'NAVS'))
 
 const skipLinkText = 'Skip to main content'
@@ -71,9 +71,9 @@ const skipLinkText = 'Skip to main content'
         searchAction={searchAction}
         showLinks={Boolean(LINKS)}
         showTags={Boolean(TAGS)}
-        siteRootPathname={siteRootPathname}
         siteUrl={SITE_URL}
         tagsPathname={tagsPathname}
+        telegramChannel={CHANNEL}
       />
     </SiteHeader>
     <main id="main-content">

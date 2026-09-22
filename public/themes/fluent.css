@@ -297,6 +297,22 @@ hr {
   font-weight: 600;
 }
 
+.site-navigation .telegram-link,
+.site-navigation .telegram-link:visited {
+  background: var(--fluent-brand);
+  color: var(--fluent-text-on-brand);
+  font-weight: 600;
+}
+
+.site-navigation .telegram-link:hover {
+  background: var(--fluent-brand-hover);
+  color: var(--fluent-text-on-brand);
+}
+
+.site-navigation .telegram-link:active {
+  background: var(--fluent-brand-pressed);
+}
+
 /* Search */
 .desktop-search,
 .mobile-search form {
