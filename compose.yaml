@@ -1,0 +1,10 @@
+services:
+  app:
+    build:
+      context: .
+    container_name: broadcast-channel
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - '127.0.0.1:4321:4321'
